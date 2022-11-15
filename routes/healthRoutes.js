@@ -1,5 +1,5 @@
-import express from 'express';
-import { addObat } from '../controller/obatHandler.js';
+const express = require('express')
+const { addObat } = require('../controller/obatHandler.js')
 
 const router = express.Router();
 
@@ -16,4 +16,4 @@ router.post('/drug', addObat)
 // router.get('/drugs/:id', getDetailDrug)
 
 
-export default router
+module.exports = {routes: router}

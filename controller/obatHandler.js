@@ -1,4 +1,4 @@
-import firestore from '../db.js';
+const firestore = require('../db');
 
 // obat ====
 const addObat = async (req, res, next) => {
@@ -7,7 +7,7 @@ const addObat = async (req, res, next) => {
     data['id'] = new Date.now();
 
     await firestore.collection("drug").doc().set(data);
-    
+
     res.status(200);
     res.send({
         message: 'success',
@@ -36,6 +36,7 @@ const addObat = async (req, res, next) => {
 //   }
 // };
 
-export {
-    addObat
-}
+module.exports = { addObat }
+// export {
+//     addObat
+// }
