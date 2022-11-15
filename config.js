@@ -16,7 +16,7 @@ const {
     APP_ID
 } = process.env;
 
-assert(PORT_LOCAL || process.env.PORT, 'PORT is required');
+assert(process.env.PORT, 'PORT is required');
 assert(HOST, 'HOST is required');
 
 module.exports =  {
