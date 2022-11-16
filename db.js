@@ -1,4 +1,5 @@
 const { initializeApp } = require('firebase/app');
+const { getFirestore } = require('firebase/firestore');
 const firestore = require('firebase/firestore');
 const config = require('./config');
 
@@ -9,9 +10,7 @@ const config = require('./config');
 
 initializeApp(config.firebaseConfig)
 
-const db = firestore;
-
-module.exports = db
+module.exports = firestore
 
 // export default db;
  
