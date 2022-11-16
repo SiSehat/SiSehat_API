@@ -1,19 +1,21 @@
-import firestore from '../db.js';
+import {default as firestore} from '../db.js';
 
 // obat ====
 const addObat = async (req, res, next) => {
   try {
     const data = req.body;
-    data['id'] = Math.floor(Math.random() * 100);
-
-    await firestore.collection("drug").doc().set(data);
+    data.id = Math.floor(Math.random() * 100);
     
+    const dbRef = firestore.collection(firestore.getFirestore(), "drug")
+    await firestore.addDoc(dbRef, data)
+
     res.status(200);
     res.send({
         message: 'success',
         data
     });
   } catch (error) {
+    console.error(error);
     res.status(400).send({ message: error.message });
   }
 };
@@ -36,6 +38,7 @@ const addObat = async (req, res, next) => {
 //   }
 // };
 
-export {
-    addObat
-}
+export {addObat}
+// export {
+//     addObat
+// }

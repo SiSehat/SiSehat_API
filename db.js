@@ -1,11 +1,11 @@
-import admin from 'firebase-admin'
-import * as config from './config.js';
-import serviceAccount from './sisehat-api-4c78d-firebase-adminsdk-698pu-8c65ba3ce1.json' assert { type: 'json' }
+import { initializeApp } from 'firebase/app';
+import * as firestore from  'firebase/firestore'
+import config from './config.js';
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-})
+// const { initializeApp } = require('firebase/app');
+// const firestore = require('@firebase/firestore');
+// const config = require('./config');
 
-const db = admin.firestore();
+initializeApp(config.firebaseConfig)
 
-export default db;
+export default firestore;
