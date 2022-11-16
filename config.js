@@ -16,8 +16,8 @@ const {
     APP_ID
 } = process.env;
 
-assert(PORT, 'PORT is required');
-assert(HOST, 'HOST is required');
+// assert(PORT, 'PORT is required');
+// assert(HOST, 'HOST is required');
 
 export default {
     port: PORT,
