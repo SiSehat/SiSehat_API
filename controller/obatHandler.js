@@ -1,4 +1,6 @@
-import {default as firestore} from '../db.js';
+import db from '../db.js'
+
+const firestore = db.firestore();
 
 // obat ====
 const addObat = async (req, res, next) => {
@@ -6,8 +8,7 @@ const addObat = async (req, res, next) => {
     const data = req.body;
     data.id = Math.floor(Math.random() * 100);
     
-    const dbRef = firestore.collection(firestore.getFirestore(), "drug")
-    await firestore.addDoc(dbRef, data)
+    await firestore.collection('students').doc().set(data);
 
     res.status(200);
     res.send({
