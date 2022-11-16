@@ -1,19 +1,21 @@
 import db from '../db.js'
 
 const firestore = db.firestore();
+let getCollection = null
 
 // obat ====
 const addObat = async (req, res, next) => {
   try {
     const data = req.body;
-    data.id = Math.floor(Math.random() * 100);
     
-    await firestore.collection('drug').doc().set(data);
+    getCollection = firestore.collection('drug')
+    const id = getCollection.id
 
     res.status(200);
     res.send({
         message: 'success',
-        data
+        data,
+        id
     });
   } catch (error) {
     console.error(error);
@@ -21,25 +23,21 @@ const addObat = async (req, res, next) => {
   }
 };
 
-// const getDetailDrug = async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const drug = await firestore.collection("drug").doc(id);
-//     const data = await drug.get();
+const getDetailDrug = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const drug = firestore.collection('drug').doc(id);
+    const data = await drug.get()
+    
+    if (!data.exists) {
+      res.status(404).send('drug with the given ID not found')
+    } else {
+      res.status(200).send(data.data())
+    }
+  } catch (error) {
+    res.status(400).send(error.message)
+    console.log(error);
+  }
+}
 
-//     if (!data.exists) {
-//       res.status(404).send({
-//         message: "Drug not found",
-//       });
-//     } else {
-//       res.send(data.data());
-//     }
-//   } catch (error) {
-//     res.status(400).send({ message: error.message });
-//   }
-// };
-
-export {addObat}
-// export {
-//     addObat
-// }
+export { addObat, getDetailDrug }

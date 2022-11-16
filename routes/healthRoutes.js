@@ -1,5 +1,5 @@
 import express from 'express';
-import { addObat } from '../controller/obatHandler.js';
+import { addObat, getDetailDrug } from '../controller/obatHandler.js';
 
 const router = express.Router();
 
@@ -12,8 +12,8 @@ router.get('/test', (req, res) => {
 
 // obat
 router.post('/drug', addObat)
+router.get('/drug/:id', getDetailDrug)
 // router.get('/drugs', )
-// router.get('/drugs/:id', getDetailDrug)
 
 
 export default router
