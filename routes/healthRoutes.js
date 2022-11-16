@@ -1,5 +1,5 @@
-const express = require('express')
-const { addObat } = require('../controller/obatHandler.js')
+import express from 'express';
+import { addObat } from '../controller/obatHandler.js';
 
 const router = express.Router();
 
@@ -16,4 +16,4 @@ router.post('/drug', addObat)
 // router.get('/drugs/:id', getDetailDrug)
 
 
-module.exports = {routes: router}
+export default router

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "start-dev": "nodemon index.js"
@@ -21,8 +22,6 @@
   },
   "homepage": "https://github.com/Dhino12/API_SiSehat#readme",
   "dependencies": {
-    "@firebase/app": "^0.8.4",
-    "@firebase/firestore": "^3.7.3",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

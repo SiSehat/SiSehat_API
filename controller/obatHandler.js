@@ -1,23 +1,19 @@
-// const { collection, addDoc, getFirestore } = require('../db');
-const firestore = require('../db');
+import firestore from '../db.js';
 
 // obat ====
 const addObat = async (req, res, next) => {
   try {
     const data = req.body;
-    data.id = Math.floor(Math.random() * 100);
-    
-    await firestore.collection("drug").doc().set(data);
-    // const dbRef = collection(getFirestore(), "drug")
-    // await addDoc(dbRef, data)
+    data['id'] = Math.floor(Math.random() * 100);
 
+    await firestore.collection("drug").doc().set(data);
+    
     res.status(200);
     res.send({
         message: 'success',
         data
     });
   } catch (error) {
-    console.error(error);
     res.status(400).send({ message: error.message });
   }
 };
@@ -40,7 +36,6 @@ const addObat = async (req, res, next) => {
 //   }
 // };
 
-module.exports = { addObat }
-// export {
-//     addObat
-// }
+export {
+    addObat
+}
