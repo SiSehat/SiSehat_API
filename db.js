@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import * as firestore from  'firebase/firestore'
+import * as firestore from  'firebase/firestore/lite'
 import config from './config.js';
 
 // const { initializeApp } = require('firebase/app');
