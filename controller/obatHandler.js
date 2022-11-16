@@ -1,4 +1,5 @@
-const { collection, addDoc, getFirestore } = require('../db');
+// const { collection, addDoc, getFirestore } = require('../db');
+const firestore = require('../db');
 
 // obat ====
 const addObat = async (req, res, next) => {
@@ -6,8 +7,9 @@ const addObat = async (req, res, next) => {
     const data = req.body;
     data.id = Math.floor(Math.random() * 100);
     
-    const dbRef = collection(getFirestore(), "drug")
-    await addDoc(dbRef, data)
+    await firestore.collection("drug").doc().set(data);
+    // const dbRef = collection(getFirestore(), "drug")
+    // await addDoc(dbRef, data)
 
     res.status(200);
     res.send({
