@@ -5,7 +5,7 @@ const addObat = async (req, res, next) => {
   try {
     const data = req.body;
     data['id'] = Math.floor(Math.random * 100);
-
+    
     const result = await firestore.collection("drug").doc().set(data);
     console.log(result);
 
