@@ -7,15 +7,16 @@ let getCollection = null
 const addObat = async (req, res, next) => {
   try {
     const data = req.body;
+    data.id = Math.random() * 100;;
     
     getCollection = firestore.collection('drug')
-    const id = getCollection.id
+    const getId = await getCollection.add(data);
 
     res.status(200);
     res.send({
         message: 'success',
+        id: getId.id,
         data,
-        id
     });
   } catch (error) {
     console.error(error);
@@ -25,9 +26,10 @@ const addObat = async (req, res, next) => {
 
 const getDetailDrug = async (req, res, next) => {
   try {
+    
     const id = req.params.id;
-    const drug = firestore.collection('drug').doc(id);
-    const data = await drug.get()
+    getCollection = firestore.collection('drug');
+    const data = await getCollection.get().docs.find(value => value.id === id)
     
     if (!data.exists) {
       res.status(404).send('drug with the given ID not found')
