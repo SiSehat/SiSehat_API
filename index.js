@@ -1,19 +1,42 @@
 "use strict";
-import express from "express";
-import cors from "cors";
-import bodyParse from "body-parser";
-import * as config from "./config.js";
-import router from "./src/routes/healthRoutes.js";
-const port = process.env.PORT || config.port;
+import Hapi from '@hapi/hapi'
+import routes from './src/routes/routes.js'
 
-const app = express();
+const init = async () => {
+    const server = Hapi.server({
+        port: 5000,
+        host: 'localhost',
+        routes: {
+            cors: {
+                origin: ['*']
+            }
+        }
+    })
 
-app.use(express.json());
-app.use(cors());
-app.use(bodyParse.json());
+    server.route(routes);
+    await server.start();
 
-app.use("/api", router);
+    console.log(`Server sedang berjalan di ${server.info.uri}`);
+}
 
-app.listen(port, () =>
-  console.log("App is listening on url http://localhost:" + port)
-);
+init();
+
+
+// import express from "express";
+// import cors from "cors";
+// import bodyParse from "body-parser";
+// import * as config from "./config.js";
+// import router from "./src/routes/healthRoutes.js";
+// const port = process.env.PORT || config.port;
+
+// const app = express();
+
+// app.use(express.json());
+// app.use(cors());
+// app.use(bodyParse.json());
+
+// app.use("/api", router);
+
+// app.listen(port, () =>
+//   console.log("App is listening on url http://localhost:" + port)
+// );
