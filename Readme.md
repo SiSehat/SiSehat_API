@@ -22,7 +22,9 @@
 [ Response ] 
 <details>
     <summary>Response</summary>
+
     ## Response
+    
     ```
     {
         "status": "success",
