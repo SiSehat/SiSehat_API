@@ -38,6 +38,8 @@ const getDetailDrug = async (request, h) => {
   getCollection = firestore.collection("drug")
   const dataObat = (await getCollection.get()).docs.find(value => value.id === id)
 
+  console.log(dataObat);
+
   if (dataObat.exists) {
     return {
       status: 'success',

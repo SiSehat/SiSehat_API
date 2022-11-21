@@ -19,12 +19,11 @@
 ## GET Detail Obat
 *`/drug/{id?}`*
 
-[ Response ] 
 <details>
-    <summary>Response</summary>
+    <summary>[ Response ]</summary>
 
     ## Response
-    
+
     ```
     {
         "status": "success",
