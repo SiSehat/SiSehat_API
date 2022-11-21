@@ -9,8 +9,7 @@
 - 400-499     : client error. [400] Bad Request, [404] Not Found
 - 500-599     : server errors.
 
-# Endpoint
-
+## Endpoint
 ## POST Obat
 [ Response ]
 ```JSON
