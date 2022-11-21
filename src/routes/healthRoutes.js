@@ -1,5 +1,5 @@
 import express from "express";
-import { addObat, getDetailDrug } from "../../controller/obatHandler.js";
+import { addObat, getDetailDrug } from "../controller/obatHandler.js";
 
 const router = express.Router();
 
