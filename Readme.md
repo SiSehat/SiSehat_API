@@ -22,7 +22,8 @@
 [ Response ] 
 <details>
     <summary>Response</summary>
-    ```JSON
+    ## Response
+    ```
     {
         "status": "success",
         "id": "nfvFxxkDBFpKjRdfCO2k",
