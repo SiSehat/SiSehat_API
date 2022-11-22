@@ -1,4 +1,5 @@
 import { getDetailDrug, addObat, getAllDrug, updateDrug, deleteDrug } from '../controller/obatHandler.js';
+import { addPenyakit } from '../controller/penyakitHandler.js';
 
 const routes = [
     {
@@ -25,6 +26,11 @@ const routes = [
         method: 'DELETE',
         path: '/drug/{id}',
         handler: deleteDrug
+    },
+    {
+        method: 'POST',
+        path: '/disease',
+        handler: addDisease
     },
 ]
 
