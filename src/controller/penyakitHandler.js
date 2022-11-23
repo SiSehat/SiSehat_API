@@ -85,7 +85,7 @@ const updateDisease = async (request, h) => {
   const dataObat = getCollection.doc(id);
   const oldData = (await dataObat.get()).data();
   const publish_date = new Date().toISOString();
-
+  
   if (oldData) {
     dataObat.update({
       ...body,
@@ -139,4 +139,4 @@ const deleteDisease = async (request, h) => {
   return response;
 };
 
-export { addDisease };
+export { addDisease, getAllDisease, getDetailDisease, deleteDisease, updateDisease };
