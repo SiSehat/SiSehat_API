@@ -1,3 +1,5 @@
+import sympthomHandler from "../controller/gejalaHandler.js";
+import notFound from "../controller/notFoundHandler.js";
 import {
   getDetailDrug,
   addObat,
@@ -14,6 +16,11 @@ import {
 } from "../controller/penyakitHandler.js";
 
 const routes = [
+  {
+    method: "*",
+    path: "/{any*}",
+    handler: notFound,
+  },
   {
     method: "POST",
     path: "/drug",
@@ -63,6 +70,11 @@ const routes = [
     method: "DELETE",
     path: "/disease/{id}",
     handler: deleteDisease,
+  },
+  {
+    method: "POST",
+    path: "/sympthom",
+    handler: sympthomHandler,
   },
 ];
 

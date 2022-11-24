@@ -6,7 +6,7 @@ let getCollection = null;
 const addDisease = async (request, h) => {
   const data = request.payload;
 
-  getCollection = await firestore.collection("disease");
+  getCollection = firestore.collection("disease");
   const getId = await getCollection.add(data);
 
   if (getCollection) {
