@@ -1,9 +1,4 @@
 import firebase from 'firebase';
-import config from './config.js';
-
-// const { initializeApp } = require('firebase/app');
-// const firestore = require('@firebase/firestore');
-// const config = require('./config');
 
 const db = firebase.initializeApp({
     apiKey: "AIzaSyAM76apksRb45hAOdBYo1ViSdCCABKTQnE",
@@ -12,6 +7,6 @@ const db = firebase.initializeApp({
     storageBucket: "sisehat-api-4c78d.appspot.com",
     messagingSenderId: "482710330133",
     appId: "1:482710330133:web:3070f173cba2178459e71c"
-  })
+})
 
 export default db;
