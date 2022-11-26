@@ -16,15 +16,18 @@ import {
 } from "../controller/penyakitHandler.js";
 
 const routes = [
-  {
-    method: "*",
-    path: "/{any*}",
-    handler: notFound,
-  },
-  {
-    method: "GET",
-    path: "/#",
-  },
+  // {
+  //   method: "*",
+  //   path: "/{any*}",
+  //   handler: notFound,
+  // },
+  // {
+  //   method: "GET",
+  //   path: "/#",
+  //   handler: (req, h) => {
+  //     h.render
+  //   }
+  // },
   {
     method: "POST",
     path: "/drug",
