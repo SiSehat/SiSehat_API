@@ -1,3 +1,4 @@
+import e from "cors";
 import db from "../../db.js";
 
 const firestore = db.firestore();
@@ -14,7 +15,7 @@ const sympthomHandler = async (request, h) => {
             .where('symptom', "array-contains-any", symptoms).get()
 
         let result = [];
-        data.docs.forEach((user) => {
+        data.forEach((user,i) => {
             result.push(user.data())
         })
 
@@ -22,6 +23,7 @@ const sympthomHandler = async (request, h) => {
         let tmp = [];
         let dataSymptom = [];
         let realData = [];
+
         result.forEach((symptomsData, i) => {
             dataSymptom = [];
             symptoms.forEach((symptom, i) => {
@@ -30,14 +32,17 @@ const sympthomHandler = async (request, h) => {
                     dataSymptom.push(...tmp)
                 }
             })
+            
             countVerif.push(dataSymptom)
-            if (i > 0 && countVerif[i - 1].length < countVerif[i].length) {
+
+            if (i == 0 || countVerif[i - 1].length < countVerif[i].length) {
+                console.log(countVerif);
                 realData = symptomsData;
-            }
+            } 
+            
             console.log('ganti data');
         })
 
-        console.log(realData);
         // console.log(realData);
 
         response = h.response({

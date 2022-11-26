@@ -1,6 +1,7 @@
 "use strict";
 import Hapi from '@hapi/hapi'
 import routes from './src/routes/routes.js'
+// import headlebars from 'handlebars'
 
 const init = async () => {
     const server = Hapi.server({
