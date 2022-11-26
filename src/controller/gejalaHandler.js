@@ -1,4 +1,4 @@
-import e from "cors";
+
 import db from "../../db.js";
 
 const firestore = db.firestore();
