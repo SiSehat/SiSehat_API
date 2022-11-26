@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "start-dev": "nodemon index.js"
+    "start-dev": "nodemon index.js",
+    "docs-init": "docsify init",
+    "docs-serve": "docsify serve"
   },
   "engines": {
     "node": "16.x"
@@ -25,6 +27,7 @@
     "@hapi/hapi": "^21.0.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
+    "docsify-cli": "^4.4.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "firebase": "^8.0.1",

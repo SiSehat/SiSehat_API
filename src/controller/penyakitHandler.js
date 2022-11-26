@@ -62,9 +62,7 @@ const getDetailDisease = async (request, h) => {
     return {
       status: "success",
       id: dataObat.id,
-      data: {
-        data: dataObat.data(),
-      },
+      data: dataObat.data(),
     };
   } else {
     const response = h.response({
