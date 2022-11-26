@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import config from './config.js';
 
 const db = firebase.initializeApp({
     apiKey: "AIzaSyAM76apksRb45hAOdBYo1ViSdCCABKTQnE",
