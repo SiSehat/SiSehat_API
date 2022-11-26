@@ -23,7 +23,7 @@ const routes = [
   },
   {
     method: "GET",
-    path: "/",
+    path: "/#",
   },
   {
     method: "POST",
