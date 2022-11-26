@@ -22,6 +22,10 @@ const routes = [
     handler: notFound,
   },
   {
+    method: "GET",
+    path: "/",
+  },
+  {
     method: "POST",
     path: "/drug",
     handler: addObat,
