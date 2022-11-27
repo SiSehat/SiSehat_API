@@ -16,6 +16,19 @@
     * `/sympthom`
 * Method
     * `POST`
+
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    {
+        "symptom": [ "lemas" ]
+    }
+    ```
+    </details>
+
 * Response
 ```JSON
 {
@@ -60,6 +73,35 @@
     * `/drug`
 * Method
     * `POST`
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    {
+        "title": "Paramex Flu dan Batuk",
+        "short_desc": "Siapa yang tahan dengan gejala batuk dan flu? Segera atasi dengan obat yang tepat! Salah satunya Paramex Flu dan Batuk. Ini kandungannya.",
+        "publish_date": "2021-12-01T11:44:47Z",
+        "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+        "reviewer_name": "Apt. Evita Fitriani., S. Farm",
+        "categories": "obat-demam",
+        "about": "Flu yang disebabkan virus influenza ini memang sangat mudah menular.",
+        "kegunaan": "Manfaat Paramex Flu dan Batuk adalah untuk mengatasi gejala flu, seperti hidung tersumbat, demam, dan sakit kepala yang disertai dengan batuk kering.",
+        "rules": [
+            "Cara Penggunaan Paramex Flu dan Batuk untuk orang dewasa adalah 1 tablet."
+        ],
+        "warning": [
+            "Pseudoephedrine yang ada di dalam Paramex Flu dan Batuk termasuk dalam obat kategori C. Artinya, studi pada binatang percobaan memperlihatkan adanya efek samping terhadap janin, meski belum ada studi terkontrol pada ibu hamil.",
+        ],
+        "Disease-Related": [
+            "nyeri",
+            "demam"
+        ]
+    }
+    ```
+    </details>
+
 * Response
 ```JSON
     {
@@ -193,6 +235,18 @@
     * `/drug/{id}`
 * Method
     * `PUT`
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    // isikan apa yg ingin diupdate
+    {
+        "reviewer_name": "Udin Pratama"
+    }
+    ```
+    </details>
 * Response
 ```JSON
     {
@@ -243,6 +297,38 @@
     * `/disease`
 * Method
     * `POST`
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    // isikan apa yg ingin diupdate
+    {
+        "title": "Dehiderasi",
+        "short_desc": "Dehidrasi merupakan kondisi jumlah cairan yang keluar dari tubuh lebih banyak dari jumlah cairan yang masuk.",
+        "publish_date": "2021-08-19T16:22:02Z",
+        "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+        "reviewer_name": "Tim Apoteker",
+        "categories": "kesehatan_umum",
+        "about": "Dehidrasi merupakan kondisi jumlah cairan yang keluar dari tubuh lebih.",
+        "obat": [
+            "air",
+            "rehidrasi_oral"
+        ],
+        "medication": "Pada kondisi dehidrasi ringan-sedang di mana asupan makanan dan minuman masih baik.",
+        "symptom": [
+            "haus", 
+            "lemas"
+        ],
+        "diagonsis": [
+            "tekanan darah yang rendah",
+            "denyut nadi yang cepat"
+        ],
+        "reviewed": ""
+    }
+    ```
+    </details>
 * Response
 ```JSON
     {
@@ -393,6 +479,18 @@
     * `/disease/{id}`
 * Method
     * `GET`
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    // isikan apa yg ingin diupdate
+    {
+        "categories": "kesehatan_umum"
+    }
+    ```
+    </details>
 * Response
 ```JSON
     {
@@ -412,9 +510,7 @@
                 "menggigil",
                 "nyeri_sendi",
             ],
-            "categories": [
-                "kesehatan_umum"
-            ],
+            "categories": "kesehatan_umum",
             "about": "Demam adalah kondisi meningkatnya suhu tubuh di atas rata-rata suhu harian."
             "short_desc": "Demam adalah kondisi meningkatnya suhu tubuh di atas rata-rata suhu harian. Ketahui penyebab, gejala, dan dan cara mengobati demam di sini.",
             "obat": [
