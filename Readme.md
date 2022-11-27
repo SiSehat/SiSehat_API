@@ -1,10 +1,6 @@
 # SiAPI
 > SiAPI adalah API untuk menyimpan data-data kesehatan <br> berupa jenis obat-obatan, jenis penyakit, dan menemukan penyakit berdasarkan gejala
 
-## Documentation
-Lebih rapih dengan documentation <br>
-[https://docs-si-sehat.vercel.app/#/](https://docs-si-sehat.vercel.app/#/)
-
 ## Endpoint 
 [https://api-si-sehat.vercel.app](https://api-si-sehat.vercel.app)
 
@@ -14,6 +10,49 @@ Lebih rapih dengan documentation <br>
 - 300-399     : redirect.
 - 400-499     : client error. [400] Bad Request, [404] Not Found
 - 500-599     : server errors.
+
+## Temukan penyakit berdasarkan gejala
+* URL
+    * `/sympthom`
+* Method
+    * `POST`
+* Response
+```JSON
+{
+    "status": "success",
+    "id": "SXESjUVoxmfKXCznnDuj",
+    "data": {
+        "title": "Demam",
+        "publish_date": "2021-08-19T16:22:02Z",
+        "symptom": [
+            "berkeringat",
+            "menggigil",
+            "nyeri_sendi",
+            "nyeri_otot",
+            "sakit kepala",
+            "nafsu makan hilang",
+            "lemas",
+            "dehidrasi",
+            "rewel atau gelisah pada anak",
+            "lemas"
+        ],
+        "short_desc": "Demam adalah kondisi meningkatnya suhu tubuh di atas rata-rata suhu harian.",
+        "obat": [
+            "air",
+            "rehidrasi_oral"
+        ],
+        "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+        "medication": "Menjaga kecukupan cairan tubuh, batasi aktivitas, istirahat yang cukup, usahakan suhu ruangan tetap sejuk, kompres atau mandi air hangat, obat penurun panas.",
+        "about": "Demam adalah kondisi meningkatnya suhu tubuh di atas rata-rata suhu harian. Ketahui penyebab, gejala, dan dan cara mengobati demam di sini.",
+        "reviewer_name": "dr. Muhammad Iqbal Ramadhan",
+        "diagonsis": [
+            "Rata-rata suhu oral normal adalah 37 derajat Celsius",
+            "Suhu rektal dan telinga lebih tinggi 0,3–0,6 derajat Celsius daripada suhu oral."
+        ],
+        "categories": "kesehatan_umum"
+    }
+}
+```
 
 ## Obat
 ### POST Obat
