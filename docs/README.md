@@ -67,6 +67,73 @@
 }
 ```
 
+## Admin
+### Register
+* URL
+    * `/register`
+* Method
+    * `POST`
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    {
+        "username": "udin_pratama",
+        "email": "udin@gmail.com",
+        "password": "udin_123"
+    }
+    ```
+    </details>
+* Response
+```JSON
+    {
+        "status": "success",
+        "message": "berhasil menambahkan user",
+        "data": {
+            "id": "13FwjMjkua3FNB6dnsec",
+            "data": {
+                "username": "udin_pratama",
+                "email": "udin@gmail.com",
+                "password": "udin_123"
+            }
+        }
+    }
+```
+
+### Login
+* URL
+    * `/login`
+* Method
+    * `POST`
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    {
+        "username": "udin_pratama",
+        "email": "udin@gmail.com",
+        "password": "udin_123"
+    }
+    ```
+    </details>
+
+* Response
+```JSON
+    {
+        "status": "success",
+        "message": "user ditemukan",
+        "data": {
+            "username": "udin_pratama",
+            "password": "udin_123",
+            "email": "udin@gmail.com"
+        }
+    }
+```
+
 ## Obat
 ### POST Obat
 * URL
