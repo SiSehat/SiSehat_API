@@ -1,8 +1,18 @@
-const notFound = () => {
+const notFoundHandler = () => {
     return {
         status: 'fail',
         message: "request api tidak ditemukan"
     };
 }
 
-export default notFound
+const rootHandler = () => {
+    return {
+        status: 'success',
+        message: 'ini adalah bagian root / parent dari api, untuk melihat dokumentasi dapat menggunakan https://docs-si-sehat.vercel.app/#/'
+    };
+}
+
+export {
+    notFoundHandler,
+    rootHandler
+}

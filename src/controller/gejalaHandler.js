@@ -38,12 +38,12 @@ const sympthomHandler = async (request, h) => {
             if (i == 0 || countVerif[i - 1].length < countVerif[i].length) {
                 console.log(countVerif);
                 realData = symptomsData;
-            } 
+            }
             
             console.log('ganti data');
         })
 
-        // console.log(realData);
+        if (medicinesDetail.length === 0) throw 'EmptyMedicinesExceptions'
 
         response = h.response({
             status: "success",
@@ -52,10 +52,49 @@ const sympthomHandler = async (request, h) => {
     
         response.code(200);
     } catch (error) {
-        console.log(error);
+        response = h.response({
+            status: 'fail',
+            message: 'data tidak tersedia'
+        })
+        response.code(404);
     }
 
     return response
 }
 
-export default sympthomHandler
+const medicineByHandler = async (request, h) => {
+    const medicines = request.payload.medicines;
+    getCollection = firestore.collection('drug');
+    let response = null;
+
+    try {
+        let data = await getCollection.where('title', 'in', medicines).get()
+        
+        const medicinesDetail = []
+        data.forEach(medicine => {
+            medicinesDetail.push(medicine.data());
+        })
+
+        if (medicinesDetail.length === 0) throw 'EmptyMedicinesExceptions'
+
+        response = h.response({
+            status: "success",
+            data: medicinesDetail
+        })
+        response.code(200);
+    } catch (error) {
+        console.error(error);
+        response = h.response({
+            status: 'fail',
+            message: 'data tidak tersedia'
+        })
+        response.code(404);
+    }
+
+    return response;
+}
+
+export {
+    sympthomHandler,
+    medicineByHandler
+}
