@@ -24,7 +24,7 @@
 
     ```JSON
     {
-        "symptom": [ "lemas" ]
+        "symptoms": [ "lemas" ]
     }
     ```
     </details>
@@ -64,6 +64,53 @@
         ],
         "categories": "kesehatan_umum"
     }
+}
+```
+
+## Temukan obat
+* URL
+    * `/sympthom`
+* Method
+    * `POST`
+
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+
+    ```JSON
+    {
+        "medicines": [ "paracetamol" ]
+    }
+    ```
+    </details>
+
+* Response
+```JSON
+{
+    "status": "success",
+    "data": [
+        {
+            "about": "Flu yang disebabkan virus influenza ini memang sangat mudah menular.",
+            "publish_date": "2022-11-30T03:54:37.494Z",
+            "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+            "kegunaan": "Manfaat Paramex Flu dan Batuk adalah untuk mengatasi gejala flu.",
+            "short_desc": "Siapa yang tahan dengan gejala batuk dan flu? Segera atasi dengan obat yang tepat! Salah satunya Paramex Flu dan Batuk. Ini kandungannya.",
+            "warning": [
+                "Pseudoephedrine yang ada di dalam Paramex Flu dan Batuk termasuk dalam obat kategori C. Artinya, studi pada binatang percobaan memperlihatkan adanya efek samping terhadap janin, meski belum ada studi terkontrol pada ibu hamil.",
+            ],
+            "reviewer_name": "Apt. Evita Fitriani., S. Farm",
+            "categories": "obat-demam",
+            "Disease-Related": [
+                "nyeri",
+                "demam"
+            ],
+            "title": "paramex flu dan batuk",
+            "rules": [
+                "Cara Penggunaan Paramex Flu dan Batuk untuk orang dewasa adalah 1 tablet diminum 3 kali sehari dan pada anak-anak 6-12 tahun diminum ½ tablet 3 kali sehari."
+            ]
+        }
+    ]
 }
 ```
 
@@ -114,8 +161,7 @@
 
     ```JSON
     {
-        "username": "udin_pratama",
-        "email": "udin@gmail.com",
+        "username": "udin121",
         "password": "udin_123"
     }
     ```
