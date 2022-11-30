@@ -1,6 +1,9 @@
 # SiAPI
 > SiAPI adalah API untuk menyimpan data-data kesehatan <br> berupa jenis obat-obatan, jenis penyakit, dan menemukan penyakit berdasarkan gejala
 
+## Documentation
+Lebih rapih dengan documentation [https://api-si-sehat.vercel.app](https://api-si-sehat.vercel.app)
+
 ## Endpoint 
 [https://api-si-sehat.vercel.app](https://api-si-sehat.vercel.app)
 
