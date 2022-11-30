@@ -161,7 +161,7 @@
 
     ```JSON
     {
-        "username": "udin121",
+        "email": "udin121@gmail.com",
         "password": "udin_123"
     }
     ```
