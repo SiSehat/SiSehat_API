@@ -1,4 +1,5 @@
 import db from "../../db.js";
+import { medicineSchema } from "../helpers/validation_schema.js";
 
 const firestore = db.firestore();
 let getCollection = null;
@@ -6,31 +7,45 @@ let getCollection = null;
 // obat ====
 const addObat = async (request, h) => {
   const data = request.payload;
+  let response = null
 
-  getCollection = firestore.collection("drug");
-  const getId = await getCollection.add(data);
+  try {
+    const result = await medicineSchema.validateAsync(request.payload);
 
-  if (getId) {
-    const response = h.response({
-      status: "success",
-      message: "Obat berhasil ditambahkan",
-      data: {
-        id: getId.id,
-        data
-      },
-    });
-
-    response.code(201);
-    return response;
+    getCollection = firestore.collection("drug");
+    const getId = await getCollection.add(result);
+  
+    if (getId) {
+      response = h.response({
+        status: "success",
+        message: "Obat berhasil ditambahkan",
+        data: {
+          id: getId.id,
+          data
+        },
+      });
+  
+      response.code(201);
+      return response;
+    }
+  } catch (error) {
+    if (error.isJoi === true) {
+      response = h.response({
+        status: "fail",
+        message: error.details,
+      });
+  
+      response.code(500);
+    } else {
+      response = h.response({
+        status: "fail",
+        message: "Obat gagal ditambahkan",
+      });
+  
+      response.code(500);
+    }
+    return response; 
   }
-
-  const response = h.response({
-    status: "fail",
-    message: "Obat gagal ditambahkan",
-  });
-
-  response.code(500);
-  return response;
 };
 
 const getAllDrug = async () => {

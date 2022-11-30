@@ -1,5 +1,5 @@
-import sympthomHandler from "../controller/gejalaHandler.js";
-import notFound from "../controller/notFoundHandler.js";
+import { sympthomHandler, medicineByHandler } from "../controller/gejalaHandler.js";
+import { notFoundHandler, rootHandler } from '../controller/notFoundHandler.js'
 import {
   getDetailDrug,
   addObat,
@@ -14,13 +14,29 @@ import {
   getDetailDisease,
   updateDisease,
 } from "../controller/penyakitHandler.js";
+import { login, register } from "../controller/userHandler.js";
 
 const routes = [
-  // {
-  //   method: "*",
-  //   path: "/{any*}",
-  //   handler: notFound,
-  // },
+  {
+    method: "*",
+    path: "/{any*}",
+    handler: notFoundHandler,
+  },
+  {
+    method: "GET",
+    path: "/",
+    handler: rootHandler,
+  },
+  {
+    method: "POST",
+    path: "/register",
+    handler: register,
+  },
+  {
+    method: "POST",
+    path: "/login",
+    handler: login,
+  },
   {
     method: "POST",
     path: "/drug",
@@ -75,6 +91,11 @@ const routes = [
     method: "POST",
     path: "/sympthom",
     handler: sympthomHandler,
+  },
+  {
+    method: "POST",
+    path: "/medicine",
+    handler: medicineByHandler,
   },
 ];
 
