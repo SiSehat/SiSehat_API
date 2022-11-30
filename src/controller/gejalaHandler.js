@@ -1,24 +1,26 @@
 
 import db from "../../db.js";
+import { medicineFinderSchema, symptomFinderSchema } from "../helpers/validation_schema.js";
 
 const firestore = db.firestore();
 let getCollection = null;
 
 const sympthomHandler = async (request, h) => {
-    const symptoms = request.payload.symptom;
     let response = null
 
     getCollection = firestore.collection('disease')
 
     try {
+        const resultValidate = await symptomFinderSchema.validateAsync(request.payload)
+
         let data = await getCollection
-            .where('symptom', "array-contains-any", symptoms).get()
+            .where('symptom', "array-contains-any", resultValidate.symptoms).get()
 
         let result = [];
-        data.forEach((user,i) => {
+        data.forEach((user) => {
             result.push(user.data())
         })
-
+        
         let countVerif = [];
         let tmp = [];
         let dataSymptom = [];
@@ -26,7 +28,7 @@ const sympthomHandler = async (request, h) => {
 
         result.forEach((symptomsData, i) => {
             dataSymptom = [];
-            symptoms.forEach((symptom, i) => {
+            resultValidate.symptoms.forEach((symptom, i) => {
                 tmp = symptomsData.symptom.filter(data => data === symptom)
                 if (tmp.length > 0) {
                     dataSymptom.push(...tmp)
@@ -43,7 +45,7 @@ const sympthomHandler = async (request, h) => {
             console.log('ganti data');
         })
 
-        if (medicinesDetail.length === 0) throw 'EmptyMedicinesExceptions'
+        if (realData.length === 0) throw 'EmptyMedicinesExceptions'
 
         response = h.response({
             status: "success",
@@ -52,23 +54,33 @@ const sympthomHandler = async (request, h) => {
     
         response.code(200);
     } catch (error) {
-        response = h.response({
-            status: 'fail',
-            message: 'data tidak tersedia'
-        })
-        response.code(404);
+        console.log(error);
+        if (error.isJoi === true) {
+            response = h.response({
+                status: 'fail',
+                message: error.details
+            })
+            response.code(404);
+        } else {
+            response = h.response({
+                status: 'fail',
+                message: 'data tidak tersedia'
+            })
+            response.code(404);
+        }
     }
 
     return response
 }
 
 const medicineByHandler = async (request, h) => {
-    const medicines = request.payload.medicines;
-    getCollection = firestore.collection('drug');
     let response = null;
 
     try {
-        let data = await getCollection.where('title', 'in', medicines).get()
+        const result = await medicineFinderSchema.validateAsync(request.payload)
+        
+        getCollection = firestore.collection('drug');
+        let data = await getCollection.where('title', 'in', result.medicines).get()
         
         const medicinesDetail = []
         data.forEach(medicine => {
@@ -81,14 +93,22 @@ const medicineByHandler = async (request, h) => {
             status: "success",
             data: medicinesDetail
         })
+
         response.code(200);
     } catch (error) {
-        console.error(error);
-        response = h.response({
-            status: 'fail',
-            message: 'data tidak tersedia'
-        })
-        response.code(404);
+        if (error.isJoi === true) {
+            response = h.response({
+                status: 'fail',
+                message: error.details
+            })
+            response.code(404);
+        } else {
+            response = h.response({
+                status: 'fail',
+                message: 'data tidak tersedia'
+            })
+            response.code(404);
+        }
     }
 
     return response;

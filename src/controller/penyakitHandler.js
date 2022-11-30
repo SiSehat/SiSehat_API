@@ -1,34 +1,48 @@
 import db from "../../db.js";
+import { diseaseSchema } from "../helpers/validation_schema.js";
 
 const firestore = db.firestore();
 let getCollection = null;
 
 const addDisease = async (request, h) => {
-  const data = request.payload;
+  let response = null;
 
-  getCollection = firestore.collection("disease");
-  const getId = await getCollection.add(data);
+  try {
+    const result = await diseaseSchema.validateAsync(request.payload)
 
-  if (getCollection) {
-    const response = h.response({
-      status: "success",
-      message: "Penyakit berhasil ditambahkan",
-      data: {
-        id: getId.id,
-        data,
-      },
-    });
+    getCollection = firestore.collection("disease");
+    const getId = await getCollection.add(result);
+  
+    if (getCollection) {
+      response = h.response({
+        status: "success",
+        message: "Penyakit berhasil ditambahkan",
+        data: {
+          id: getId.id,
+          data,
+        },
+      });
+  
+      response.code(201);
+    }
+  } catch (error) {
+    if (error.isJoi === true)  {
+      response = h.response({
+        status: "fail",
+        message: error.details,
+      });
 
-    response.code(201);
-    return response;
+      response.code(500);
+    } else {
+      response = h.response({
+        status: "fail",
+        message: "Penyakit gagal ditambahkan",
+      });
+
+      response.code(500);
+    }
   }
 
-  const response = h.response({
-    status: "fail",
-    message: "Penyakit gagal ditambahkan",
-  });
-
-  response.code(500);
   return response;
 };
 
@@ -125,7 +139,7 @@ const deleteDisease = async (request, h) => {
       status: "success",
       message: "obat berhasil dihapus",
     });
-    response.code(200);
+
     return response;
   }
 
