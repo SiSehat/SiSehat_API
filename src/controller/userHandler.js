@@ -53,7 +53,7 @@ const login = async (request, h) => {
         getCollection = firestore.collection('users')
         
         const matchUser = (await getCollection.get()).docs.find(userDB => {
-            if (userDB.data().username === result.username && userDB.data().password === result.password)  {
+            if (userDB.data().email === result.email && userDB.data().password === result.password)  {
                 return userDB.data();
             }
         })
