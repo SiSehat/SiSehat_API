@@ -11,7 +11,7 @@ const sympthomHandler = async (request, h) => {
     getCollection = firestore.collection('disease')
 
     try {
-        const resultValidate = await symptomFinderSchema.validateAsync(request.payload)
+        const resultValidate = await symptomFinderSchema.validateAsync(JSON.parse(request.payload))
 
         let data = await getCollection
             .where('symptom', "array-contains-any", resultValidate.symptoms).get()
