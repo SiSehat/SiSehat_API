@@ -69,7 +69,7 @@
 
 ## Temukan obat
 * URL
-    * `/sympthom`
+    * `/medicine`
 * Method
     * `POST`
 
