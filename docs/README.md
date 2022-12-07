@@ -4,6 +4,9 @@
 ## Endpoint 
 [https://api-si-sehat.vercel.app](https://api-si-sehat.vercel.app)
 
+# Documentation
+Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://docs-si-sehat.vercel.app/#/)
+
 ## Status Code 
 - 100-199     : informational responses.
 - 200 - 299   : successful responses. [200] Success
