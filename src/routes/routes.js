@@ -1,4 +1,5 @@
 import { sympthomHandler, medicineByHandler } from "../controller/gejalaHandler.js";
+import findNearestHospital from "../controller/hospotalHandler.js";
 import { notFoundHandler, rootHandler } from '../controller/notFoundHandler.js'
 import {
   getDetailDrug,
@@ -96,6 +97,11 @@ const routes = [
     method: "POST",
     path: "/medicine",
     handler: medicineByHandler,
+  },
+  {
+    method: "GET",
+    path: "/hospitals",
+    handler: findNearestHospital,
   },
 ];
 
