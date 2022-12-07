@@ -1,4 +1,4 @@
-import faskes from '../../data/FaskesBPJS.json' assert { type: 'json' };
+import faskes from '../../data/FaskesBPJS.js';
 import isNegative from '../utils/isNegative.js';
 
 const findNearestHospital = (request, h) => {
