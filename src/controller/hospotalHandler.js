@@ -28,10 +28,10 @@ const findNearestHospital = (request, h) => {
             }
 
             // weast indonesia
-            if (latlngToArray[0] * 1.08 >= latlng[0] && latlngToArray[0] <= latlng[0] && isNegative(latlngToArray[0]) === false) {
+            if (latlngToArray[0] * 1.08 >= latlng[0] && latlngToArray[0] <= latlng[0] && latlngToArray[1] * 1.01 >= latlng[1] && latlngToArray[1] <= latlng[1] && isNegative(latlngToArray[0]) === false) {
                 nearHospitals.push(hospital)
             }
-        }) 
+        })
 
         response = h.response({
             status: 'success',
