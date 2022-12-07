@@ -4,6 +4,9 @@
 ## Endpoint 
 [https://api-si-sehat.vercel.app](https://api-si-sehat.vercel.app)
 
+# Documentation
+Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://docs-si-sehat.vercel.app/#/)
+
 ## Status Code 
 - 100-199     : informational responses.
 - 200 - 299   : successful responses. [200] Success
@@ -110,6 +113,93 @@
                 "Cara Penggunaan Paramex Flu dan Batuk untuk orang dewasa adalah 1 tablet diminum 3 kali sehari dan pada anak-anak 6-12 tahun diminum ½ tablet 3 kali sehari."
             ]
         }
+    ]
+}
+```
+
+## Temukan Faskes
+* URL
+    * `/hospitals`
+* Method
+    * `GET`
+
+* Request
+    * 
+    <details>
+    <summary>Example Request [Show / Hide]</summary>
+    * `/hospitals?latlng=-6.200000,106.816666`
+    </details>
+
+* Response
+```JSON
+{
+    "status": "success",
+    "hospital": [
+        {
+            "NoLink": 148,
+            "Provinsi": "Dki Jakarta",
+            "KotaKab": "Kode Faskes dan Alamat Rumah Sakit BPJS\n            di Kota Jakarta Timur",
+            "Link": "https://lovia.life/id/health/bpjs/area/kota-jakarta-timur",
+            "TipeFaskes": "Rumah Sakit",
+            "No": 3,
+            "KodeFaskes": "0113R028",
+            "NamaFaskes": "Rawamangun",
+            "LatLongFaskes": "http://maps.google.co.id/?q=-6.19651,106.886",
+            "AlamatFaskes": "Jl. Balai Pustaka Raya No.29-3",
+            "TelpFaskes": "021-47885202"
+        },
+        {
+            "NoLink": 148,
+            "Provinsi": "Dki Jakarta",
+            "KotaKab": "Kode Faskes dan Alamat Rumah Sakit BPJS\n            di Kota Jakarta Timur",
+            "Link": "https://lovia.life/id/health/bpjs/area/kota-jakarta-timur",
+            "TipeFaskes": "Rumah Sakit",
+            "No": 8,
+            "KodeFaskes": "0113R033",
+            "NamaFaskes": "Harapan Jayakarta",
+            "LatLongFaskes": "http://maps.google.co.id/?q=-6.1948,106.90564",
+            "AlamatFaskes": "Jalan Bekasi Timur Raya Km 18",
+            "TelpFaskes": "021-4608886"
+        },
+        {
+            "NoLink": 148,
+            "Provinsi": "Dki Jakarta",
+            "KotaKab": "Kode Faskes dan Alamat Rumah Sakit BPJS\n            di Kota Jakarta Timur",
+            "Link": "https://lovia.life/id/health/bpjs/area/kota-jakarta-timur",
+            "TipeFaskes": "Puskesmas",
+            "No": 4,
+            "KodeFaskes": "09030102",
+            "NamaFaskes": "Kel. Utan Kayu Utara",
+            "LatLongFaskes": "http://maps.google.co.id/?q=-6.194698,106.868993",
+            "AlamatFaskes": "Jl. Pegayoman Komp. Kehakiman",
+            "TelpFaskes": "021-0218590005"
+        },
+        {
+            "NoLink": 148,
+            "Provinsi": "Dki Jakarta",
+            "KotaKab": "Kode Faskes dan Alamat Rumah Sakit BPJS\n            di Kota Jakarta Timur",
+            "Link": "https://lovia.life/id/health/bpjs/area/kota-jakarta-timur",
+            "TipeFaskes": "Puskesmas",
+            "No": 13,
+            "KodeFaskes": "09030204",
+            "NamaFaskes": "Kel. Rawamangun",
+            "LatLongFaskes": "http://maps.google.co.id/?q=-6.198247,106.883998",
+            "AlamatFaskes": "Jl. Taman Jeruk",
+            "TelpFaskes": "021-0214786441"
+        },
+        {
+            "NoLink": 148,
+            "Provinsi": "Dki Jakarta",
+            "KotaKab": "Kode Faskes dan Alamat Rumah Sakit BPJS\n            di Kota Jakarta Timur",
+            "Link": "https://lovia.life/id/health/bpjs/area/kota-jakarta-timur",
+            "TipeFaskes": "Klinik Pratama",
+            "No": 31,
+            "KodeFaskes": "0113B059",
+            "NamaFaskes": "Klinik Kimia Farma Pulogadung",
+            "LatLongFaskes": "http://maps.google.co.id/?q=-6.199507,106.910366",
+            "AlamatFaskes": "Jl. Rawa Gelam V No.1 K.I.P",
+            "TelpFaskes": "021-6221 46093"
+        },
     ]
 }
 ```

@@ -1,5 +1,5 @@
-import isNegative from '../utils/isNegative.js';
 import faskes from '../../data/FaskesBPJS.json' assert { type: 'json' };
+import isNegative from '../utils/isNegative.js';
 
 const findNearestHospital = (request, h) => {
     const { latlng } = request.query; // location user
