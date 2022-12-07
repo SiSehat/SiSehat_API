@@ -23,9 +23,8 @@ const findNearestHospital = (request, h) => {
             // console.log(latlng[0] , hospital.NamaFaskes);            
             // ["1.121", "1.131"]
             // east indonesia
-            if (latlngToArray[0] / 1.001 >= latlng[0] && latlngToArray[0] <= latlng[0] && latlngToArray[1] * 1.002 >= latlng[1] && latlngToArray[1] <= latlng[1] && isNegative(latlngToArray[0])) {
+            if (latlngToArray[0] / 1.001 >= latlng[0] && latlngToArray[0] <= latlng[0] && latlngToArray[1] * 1.002 >= latlng[1] && latlngToArray[1] / 1.00033 <= latlng[1] && isNegative(latlngToArray[0])) {
                 nearHospitals.push(hospital)
-                console.log('masuk if 1', hospital.NamaFaskes, " | ", latlngToArray[0] / 1.008, " lng => ",  latlngToArray[1] * 1.002);
             }
 
             // weast indonesia
