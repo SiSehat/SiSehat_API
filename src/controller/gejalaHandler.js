@@ -18,13 +18,17 @@ const sympthomHandler = async (request, h) => {
 
         let result = [];
         data.forEach((user) => {
-            result.push(user.data())
+            result.push({
+                ...user.data(),
+                id: user.id
+            })
         })
         
         let countVerif = [];
         let tmp = [];
         let dataSymptom = [];
         let realData = [];
+        console.log(result);
 
         result.forEach((symptomsData, i) => {
             dataSymptom = [];
