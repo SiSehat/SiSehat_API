@@ -1,5 +1,5 @@
 import { sympthomHandler, medicineByHandler } from "../controller/gejalaHandler.js";
-import findNearestHospital from "../controller/hospotalHandler.js";
+import findNearestHospital from "../controller/hospitalHandler.js";
 import { notFoundHandler, rootHandler } from '../controller/notFoundHandler.js'
 import {
   getDetailDrug,
