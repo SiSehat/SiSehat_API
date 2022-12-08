@@ -88,7 +88,10 @@ const medicineByHandler = async (request, h) => {
         
         const medicinesDetail = []
         data.forEach(medicine => {
-            medicinesDetail.push(medicine.data());
+            medicinesDetail.push({
+                ...medicine.data(),
+                id: medicine.id
+            });
         })
 
         if (medicinesDetail.length === 0) throw 'EmptyMedicinesExceptions'
