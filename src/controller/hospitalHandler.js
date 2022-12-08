@@ -1,4 +1,5 @@
 import faskes from '../../data/FaskesBPJS.js';
+import generateRandomInteger from '../utils/generateRandomNumber.js';
 import isNegative from '../utils/isNegative.js';
 
 const findNearestHospital = (request, h) => {
@@ -43,7 +44,38 @@ const findNearestHospital = (request, h) => {
         return  response
     } catch (error) {
         console.log(error);
+
+        response = h.response({
+            status: 'fail',
+            error: true,
+            message: error.message
+        })
     }
 }
 
-export default findNearestHospital
+const findRandomHospital = (request, h) => {
+    let response = null;
+    try {
+
+        const hospital = [];
+        for (let index = 0; index < 10; index++) {
+            hospital.push(faskes[generateRandomInteger(50, 19000)])
+        }
+
+        response = h.response ({
+            status: 'success',
+            hospital: hospital   
+        })
+
+        return response;
+    } catch (error) {
+        console.log(error);
+        response = h.response({
+            status: 'fail',
+            error: true,
+            message: error.message
+        })
+    }
+}
+
+export { findNearestHospital, findRandomHospital }
