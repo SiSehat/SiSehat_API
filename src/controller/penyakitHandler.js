@@ -48,22 +48,31 @@ const addDisease = async (request, h) => {
   return response;
 };
 
-const getAllDisease = async () => {
+const getAllDisease = async (request, h) => {
   getCollection = firestore.collection("disease");
-  let datasDisease = (await getCollection.get()).docs;
-  datasDisease = datasDisease.map((disease) => {
-    return {
-      id: disease.id,
-      data: disease.data(),
-    };
-  });
+  let response = null
 
-  if (datasDisease.length !== undefined) {
-    return {
-      status: "success",
-      datasDisease,
-    };
+  try {
+    let datasDisease = (await getCollection.get()).docs;
+    datasDisease = datasDisease.map((disease) => {
+      return {
+        ...disease.data(),
+        id: disease.id,
+      };
+    });
+
+    response = h.response({
+      status: 'success',
+      data: datasDisease
+    })
+  } catch (error) {
+    response =  h.response({
+      status: 'success',
+      data: datasDisease
+    })
   }
+
+  return response;
 };
 
 const getDetailDisease = async (request, h) => {
