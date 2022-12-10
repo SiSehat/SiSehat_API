@@ -11,6 +11,7 @@ const addDisease = async (request, h) => {
     const result = await diseaseSchema.validateAsync(request.payload)
 
     getCollection = firestore.collection("disease");
+    console.log(result);
     const getId = await getCollection.add(result);
   
     if (getCollection) {
@@ -19,7 +20,7 @@ const addDisease = async (request, h) => {
         message: "Penyakit berhasil ditambahkan",
         data: {
           id: getId.id,
-          data,
+          ...result,
         },
       });
   
@@ -34,6 +35,7 @@ const addDisease = async (request, h) => {
 
       response.code(500);
     } else {
+      console.log(error);
       response = h.response({
         status: "fail",
         message: "Penyakit gagal ditambahkan",
