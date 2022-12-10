@@ -48,22 +48,30 @@ const addObat = async (request, h) => {
   }
 };
 
-const getAllDrug = async () => {
+const getAllDrug = async (request, h) => {
   getCollection = firestore.collection("drug")
-  let datasDrug = (await getCollection.get()).docs
-  datasDrug = datasDrug.map((drug) => {
-    return {
-      id: drug.id,
-      data: drug.data()
-    }
-  })
+  let response = null
+  try {
+    let datasDrug = (await getCollection.get()).docs
+    datasDrug = datasDrug.map((drug) => {
+      return {
+        ...drug.data(),
+        id: drug.id,
+      }
+    })
 
-  if(datasDrug.length !== undefined) {
-    return {
+    response = h.response({
       status: 'success',
-      datasDrug
-    }
+      data: datasDrug
+    })
+  } catch (error) {
+    response = h.response({
+      status: 'fail',
+      error: error.message
+    })
   }
+  
+  return response;
 }
 
 const getDetailDrug = async (request, h) => {
