@@ -6,14 +6,13 @@ let getCollection = null;
 
 const register = async (request, h) => {
     let response = null
+    let data = request.payload
 
     try {
         const result = await registerSchema.validateAsync(request.payload)
 
         getCollection = firestore.collection('users')
         const getId = await getCollection.add(result);
-
-        if (!getId) throw 'EmptyIDExceptions';
 
         response = h.response({
             status: 'success',
@@ -38,6 +37,7 @@ const register = async (request, h) => {
                 message: 'gagal menambahkan user baru'
             })
             response.code(500);
+            console.log(error);
         }
     }
 
