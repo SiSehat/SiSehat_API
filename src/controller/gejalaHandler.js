@@ -16,7 +16,7 @@ const sympthomHandler = async (request, h) => {
                     max = obj
                 }
                 
-                if(obj.total != resultSymptom[index].total) {
+                if(obj.total != resultSymptom[index - 1]?.total) {
                     sameData = false
                 }
             }
