@@ -129,7 +129,7 @@ const getByIdModel = async function(body, collectionName) {
     return new Promise((resolve, reject) => {
         body.forEach((diseaseData, index) => {
             getRef.child(diseaseData.id ?? 0).once('value', (snapshot) => {
-                diseases.push(snapshot.val());
+                diseases.push({id: diseaseData.id, ...snapshot.val()});
                 if (body.length - 1 == index ) resolve(diseases)
             })
         })

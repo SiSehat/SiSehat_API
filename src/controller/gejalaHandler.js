@@ -10,7 +10,6 @@ const sympthomHandler = async (request, h) => {
         let symptomDatas = [{total: 0}];
         let sameData = 0;
 
-        // console.log(sortingSymptom);
         for (const [index, obj] of resultSymptom.entries()) {
             if (obj.total >= symptomDatas[0].total) {
                 symptomDatas = [obj]
@@ -27,11 +26,8 @@ const sympthomHandler = async (request, h) => {
                 symptomDatas.push(resultSymptom[index])
             }
         }
-        console.log(symptomDatas);
-        // console.log(sameData);
 
         const resultSymptoms = await getByIdModel(symptomDatas, 'disease');
-        console.log(resultSymptoms);
         response = h.response(resultSymptoms)
     } catch (error) {
         console.log(error);
