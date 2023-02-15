@@ -1,5 +1,6 @@
 import db from "../../db.js";
 import { loginSchema, registerSchema } from "../helpers/validation_schema.js";
+import { loginModel, registerModel } from "../models/authModel.js";
 
 const firestore = db.firestore();
 let getCollection = null;
@@ -9,17 +10,20 @@ const register = async (request, h) => {
     let data = request.payload
 
     try {
+
         const result = await registerSchema.validateAsync(request.payload)
 
-        getCollection = firestore.collection('users')
-        const getId = await getCollection.add(result);
+        const resultRegister = await registerModel(result)
+
+        // getCollection = firestore.collection('users')
+        // const getId = await getCollection.add(result);
 
         response = h.response({
             status: 'success',
             message: 'berhasil menambahkan user',
             data: {
-                id: getId.id,
-                data
+                // id: getId.id,
+                // data
             }
         })
 
@@ -50,23 +54,8 @@ const login = async (request, h) => {
     try {
         const result = await loginSchema.validateAsync(request.payload)
 
-        getCollection = firestore.collection('users')
-        
-        const matchUser = (await getCollection.get()).docs.find(userDB => {
-            if (userDB.data().email === result.email && userDB.data().password === result.password)  {
-                return userDB.data();
-            }
-        })
-        
-        if (matchUser === undefined) throw 'UnregisteredUserException'
-
-        response = h.response({
-            status: 'success',
-            message: 'user ditemukan',
-            data: matchUser.data()
-        })
-
-        response.code(200);
+        const resultLogin = await loginModel(result)
+        response = h.response(resultLogin).code(200);
         
     } catch (error) {
         if (error.isJoi === true) {
@@ -77,12 +66,7 @@ const login = async (request, h) => {
     
             response.code(404);
         } else {
-            response = h.response({
-                status: 'fail',
-                message: 'user tidak ditemukan'
-            })
-    
-            response.code(404);
+            response = h.response(error).code(404);
         }
     }
 

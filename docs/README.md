@@ -94,23 +94,31 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
     "status": "success",
     "data": [
         {
-            "about": "Flu yang disebabkan virus influenza ini memang sangat mudah menular.",
-            "publish_date": "2022-11-30T03:54:37.494Z",
-            "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
-            "kegunaan": "Manfaat Paramex Flu dan Batuk adalah untuk mengatasi gejala flu.",
-            "short_desc": "Siapa yang tahan dengan gejala batuk dan flu? Segera atasi dengan obat yang tepat! Salah satunya Paramex Flu dan Batuk. Ini kandungannya.",
-            "warning": [
-                "Pseudoephedrine yang ada di dalam Paramex Flu dan Batuk termasuk dalam obat kategori C. Artinya, studi pada binatang percobaan memperlihatkan adanya efek samping terhadap janin, meski belum ada studi terkontrol pada ibu hamil.",
-            ],
-            "reviewer_name": "Apt. Evita Fitriani., S. Farm",
+            "about": "Demam merupakan salah satu gejala yang muncul ketika ada infeksi di dalam tubuh. Respons ini muncul ketika tubuh bereaksi dalam melawan kuman.",
             "categories": "obat-demam",
-            "Disease-Related": [
+            "disease_related": [
                 "nyeri",
                 "demam"
             ],
-            "title": "paramex flu dan batuk",
+            "kegunaan": "Manfaat Paracetamol adalah untuk meredakan nyeri ringan hingga sedang. Selain itu, fungsi Paracetamol adalah sebagai penurun demam.",
+            "publish_date": "2022-04-06T13:59:15Z",
+            "reviewer_name": "Tim Apoteker Klikdokter",
             "rules": [
-                "Cara Penggunaan Paramex Flu dan Batuk untuk orang dewasa adalah 1 tablet diminum 3 kali sehari dan pada anak-anak 6-12 tahun diminum ½ tablet 3 kali sehari."
+                "Anak 9-12 tahun: 3-4 sendok takar (15-20 ml), 3-4 kali per hari",
+                "Anak 6-9 tahun: 2-3 sendok takar (10-15 ml), 3-4 kali per hari",
+                "Anak 2-6 tahun: 1-2 sendok takar (5-10 ml), 3-4 kali per hari",
+                "Anak 1-2 tahun: 1 sendok takar (5 ml), 3-4 kali per hari",
+                "Anak di bawah 1 tahun: ½ sendok takar (2.5 ml), 3-4 kali per hari"
+            ],
+            "short_desc": "paracetamol adalah obat untuk menurunkan demam serta meredakan nyeri ringan hingga sedang.",
+            "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+            "title": "paramex flu dan batuk",
+            "warning": [
+                "Mengonsumsi Paracetamol yang melebihi dosis dapat menyebabkan kerusakan hati, kadang-kadang cukup serius untuk memerlukan transplantasi hati atau menyebabkan kematian",
+                "Beritahu dokter jika Anda memiliki riwayat penyakit hati dan gangguan ginjal",
+                "Konsumsi alkohol bersama Paracetamol dapat meningkatkan risiko kerusakan hati",
+                "Sebaiknya konsultasikan dengan dokter sebelum bumil mengonsumsi Paracetamol.",
+                "Paracetamol dapat masuk ke dalam ASI. Namun, Paracetamol masih aman untuk dikonsumsi ibu menyusui."
             ]
         }
     ]
@@ -228,14 +236,6 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
     {
         "status": "success",
         "message": "berhasil menambahkan user",
-        "data": {
-            "id": "13FwjMjkua3FNB6dnsec",
-            "data": {
-                "username": "udin_pratama",
-                "email": "udin@gmail.com",
-                "password": "udin_123"
-            }
-        }
     }
 ```
 
@@ -263,9 +263,9 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
         "status": "success",
         "message": "user ditemukan",
         "data": {
-            "username": "udin_pratama",
+            "email": "udin131@gmail.com",
             "password": "udin_123",
-            "email": "udin@gmail.com"
+            "username": "udin_pratama"
         }
     }
 ```
@@ -309,30 +309,7 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
 ```JSON
     {
         "status": "success",
-        "message": "Obat berhasil ditambahkan",
-        "data": {
-            "id": "4NwNUnnqBL5Q5gR5TTtY",
-            "data": {
-                "title": "Paramex Flu dan Batuk",
-                "short_desc": "Siapa yang tahan dengan gejala batuk dan flu? Segera atasi dengan obat yang tepat! Salah satunya Paramex Flu dan Batuk. Ini kandungannya.",
-                "publish_date": "2021-12-01T11:44:47Z",
-                "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
-                "reviewer_name": "Apt. Evita Fitriani., S. Farm",
-                "categories": "obat-demam",
-                "about": "Flu yang disebabkan virus influenza ini memang sangat mudah menular.",
-                "kegunaan": "Manfaat Paramex Flu dan Batuk adalah untuk mengatasi gejala flu, seperti hidung tersumbat, demam, dan sakit kepala yang disertai dengan batuk kering.",
-                "rules": [
-                    "Cara Penggunaan Paramex Flu dan Batuk untuk orang dewasa adalah 1 tablet."
-                ],
-                "warning": [
-                    "Pseudoephedrine yang ada di dalam Paramex Flu dan Batuk termasuk dalam obat kategori C. Artinya, studi pada binatang percobaan memperlihatkan adanya efek samping terhadap janin, meski belum ada studi terkontrol pada ibu hamil.",
-                ],
-                "Disease-Related": [
-                    "nyeri",
-                    "demam"
-                ]
-            }
-        }
+        "message": "drug berhasil ditambahkan"
     }
 ```
 
@@ -345,26 +322,26 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
 ```JSON
     {
         "status": "success",
-        "id": "nfvFxxkDBFpKjRdfCO2k",
+        "id": "-NOF9J1jAKNl423YTXxH",
         "data": {
-            "publish_date": "2021-12-01T11:44:47Z",
-            "about": "desc obat",
-            "rules": [
-                "rulesObat"
-            ],
-            "Disease-Related": [
+            "about": "Demam merupakan salah satu gejala yang muncul ketika ada infeksi di dalam tubuh. Respons ini muncul ketika tubuh bereaksi dalam melawan kuman.untuk mengatasi pemicu utama dari sakit tersebut",
+            "categories": "obat-demam",
+            "disease_related": [
                 "nyeri",
                 "demam"
             ],
-            "short_desc": "Short-DESC.",
-            "categories": "obat-demam",
-            "title": "title-obat",
-            "thumbnail_url": "gambar-obat",
-            "kegunaan": "Manfaat dan Kegunaan Obat",
-            "warning": [
-                "Sebaiknya tidak mengonsumsi Paramex Flu dan Batuk jika Anda sedang melakukan aktivitas yang butuh kewaspadaan, seperti mengemudi."
+            "kegunaan": "Manfaat Paracetamol adalah untuk meredakan nyeri ringan hingga sedang. Selain itu, fungsi Paracetamol adalah sebagai penurun demam.",
+            "publish_date": "2022-04-06T13:59:15Z",
+            "reviewer_name": "Tim Apoteker Klikdokter",
+            "rules": [
+                "Anak 9-12 tahun: 3-4 sendok takar (15-20 ml), 3-4 kali per hari",
             ],
-            "reviewer_name": "Reviewer Name"
+            "short_desc": "paracetamol adalah obat untuk menurunkan demam serta meredakan nyeri ringan hingga sedang.",
+            "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+            "title": "paracetamol",
+            "warning": [
+                "Mengonsumsi Paracetamol yang melebihi dosis dapat menyebabkan kerusakan hati, kadang-kadang cukup serius untuk memerlukan transplantasi hati atau menyebabkan kematian",
+            ]
         }
     }
 ```
@@ -378,7 +355,7 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
 ```JSON
     {
         "status": "success",
-        "datasDrug": [
+        "datas": [
             {
                 "id": "uDB1r4aCqi1Aec2H4Ugp",
                 "data": {
@@ -455,6 +432,7 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
     {
         "status": "success",
         "message": "Obat berhasil diperbaharui",
+        "id": "-NOF9J1jAKNl423YTXxH",
         "data": {
             "reviewer_name": "Udin Pratama",
             "kegunaan": "Manfaat Paracetamol adalah untuk meredakan nyeri ringan hingga sedang. Selain itu, fungsi Paracetamol adalah sebagai penurun demam.",
@@ -538,30 +516,27 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
         "status": "success",
         "message": "Penyakit berhasil ditambahkan",
         "data": {
-            "id": "RL7RKZThJ1MW7jRraG1T",
-            "data": {
-                "title": "Dehiderasi",
-                "short_desc": "Dehidrasi merupakan kondisi jumlah cairan yang keluar dari tubuh lebih banyak dari jumlah cairan yang masuk.",
-                "publish_date": "2021-08-19T16:22:02Z",
-                "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
-                "reviewer_name": "Tim Apoteker",
-                "categories": "kesehatan_umum",
-                "about": "Dehidrasi merupakan kondisi jumlah cairan yang keluar dari tubuh lebih.",
-                "obat": [
-                    "air",
-                    "rehidrasi_oral"
-                ],
-                "medication": "Pada kondisi dehidrasi ringan-sedang di mana asupan makanan dan minuman masih baik.",
-                "symptom": [
-                    "haus", 
-                    "lemas"
-                ],
-                "diagonsis": [
-                    "tekanan darah yang rendah",
-                    "denyut nadi yang cepat"
-                ],
-                "reviewed": ""
-            }
+            "title": "Dehiderasi",
+            "short_desc": "Dehidrasi merupakan kondisi jumlah cairan yang keluar dari tubuh lebih banyak dari jumlah cairan yang masuk.",
+            "publish_date": "2021-08-19T16:22:02Z",
+            "thumbnail_url": "https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/oObI0281aEzIFy4nkleeC/original/002458100_1601968935-Seorang-Wanita-Mengalami-Gejala-Demam-Berdarah-shutterstock_1487854622.jpg",
+            "reviewer_name": "Tim Apoteker",
+            "categories": "kesehatan_umum",
+            "about": "Dehidrasi merupakan kondisi jumlah cairan yang keluar dari tubuh lebih.",
+            "obat": [
+                "air",
+                "rehidrasi_oral"
+            ],
+            "medication": "Pada kondisi dehidrasi ringan-sedang di mana asupan makanan dan minuman masih baik.",
+            "symptom": [
+                "haus", 
+                "lemas"
+            ],
+            "diagonsis": [
+                "tekanan darah yang rendah",
+                "denyut nadi yang cepat"
+            ],
+            "reviewed": ""
         }
     }
 ```
@@ -575,7 +550,7 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
 ```JSON
     {
         "status": "success",
-        "datasDisease": [
+        "datas": [
             {
                 "id": "0uMSJqMnfkBnYffjNsxQ",
                 "data": {
@@ -698,7 +673,8 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
 ```JSON
     {
         "status": "success",
-        "message": "Penyakit berhasil diperbaharui",
+        "id": "-NOFW4ELcje_O0V1zdsC",
+        "message": "berhasil diupdate",
         "data": {
             "diagonsis": [
                 "Rata-rata suhu oral normal adalah 37 derajat Celsius.",
@@ -733,6 +709,7 @@ Lebih rapih dengan documentation [https://docs-si-sehat.vercel.app/#/](https://d
 ```JSON
     {
         "status": "success",
-        "message": "obat berhasil dihapus"
+        "id": "-NOFW4ELcje_O0V1zdsC",
+        "message": "berhasil dihapus"
     }
 ```
