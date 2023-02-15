@@ -1,5 +1,5 @@
 import { medicineFinderSchema, symptomFinderSchema } from "../helpers/validation_schema.js";
-import { getDetailModel, medicineModel, symptomModel } from "../models/diseaseModel.js";
+import { getByIdModel, getDetailModel, medicineModel, symptomModel } from "../models/diseaseModel.js";
 
 const sympthomHandler = async (request, h) => {
     let response = null
@@ -7,30 +7,32 @@ const sympthomHandler = async (request, h) => {
     try {
         const resultValidate = await symptomFinderSchema.validateAsync(request.payload)
         const resultSymptom = await symptomModel(resultValidate.symptoms)
-        let max = {total: 0};
-        let sameData = true;
+        let symptomDatas = [{total: 0}];
+        let sameData = 0;
 
-        if (resultValidate.symptoms.length != 1) {
-            for (const [index, obj] of resultSymptom.entries()) {
-                if (obj.total >= max.total) {
-                    max = obj
-                }
-                
-                if(obj.total != resultSymptom[index - 1]?.total) {
-                    sameData = false
-                }
+        // console.log(sortingSymptom);
+        for (const [index, obj] of resultSymptom.entries()) {
+            if (obj.total >= symptomDatas[0].total) {
+                symptomDatas = [obj]
             }
-        } else {
-            max = resultSymptom[0];
-            sameData = false;
+            
+            if(obj.total != resultSymptom[index - 1]?.total &&
+                obj.id != resultSymptom[index - 1]?.id) {
+                sameData++
+            }
         }
 
-        console.log(max);
+        for (let index = 0; index < resultSymptom.length - sameData; index++) {
+            if (!resultSymptom[index].id.includes(resultSymptom[index - 1]?.id)) {
+                symptomDatas.push(resultSymptom[index])
+            }
+        }
+        console.log(symptomDatas);
+        // console.log(sameData);
 
-        if(sameData) throw "not found"
-
-        const resultSymptomDetail = await getDetailModel(max.data, 'disease');
-        response = h.response(resultSymptomDetail)
+        const resultSymptoms = await getByIdModel(symptomDatas, 'disease');
+        console.log(resultSymptoms);
+        response = h.response(resultSymptoms)
     } catch (error) {
         console.log(error);
         if (error.isJoi === true) {
