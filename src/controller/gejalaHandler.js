@@ -1,15 +1,8 @@
-
-import db from "../../db.js";
 import { medicineFinderSchema, symptomFinderSchema } from "../helpers/validation_schema.js";
 import { getDetailModel, medicineModel, symptomModel } from "../models/diseaseModel.js";
 
-const firestore = db.firestore();
-let getCollection = null;
-
 const sympthomHandler = async (request, h) => {
     let response = null
-
-    getCollection = firestore.collection('disease')
 
     try {
         const resultValidate = await symptomFinderSchema.validateAsync(request.payload)
@@ -17,22 +10,27 @@ const sympthomHandler = async (request, h) => {
         let max = {total: 0};
         let sameData = true;
 
-        console.log(resultSymptom);
-        for (const [index, obj] of resultSymptom.entries()) {
-            if (obj.total > max.total) {
-                max = obj
+        if (resultValidate.symptoms.length != 1) {
+            for (const [index, obj] of resultSymptom.entries()) {
+                if (obj.total >= max.total) {
+                    max = obj
+                }
+                
+                if(obj.total != resultSymptom[index].total) {
+                    sameData = false
+                }
             }
-            if(obj.total != resultSymptom[index].total) {
-                sameData = false
-            }
+        } else {
+            max = resultSymptom[0];
+            sameData = false;
         }
 
-        if(!sameData) {
-            const resultSymptomDetail = await getDetailModel(max.data, 'disease');
-            response = h.response(resultSymptomDetail)
-        } 
+        console.log(max);
 
-        throw "not found"
+        if(sameData) throw "not found"
+
+        const resultSymptomDetail = await getDetailModel(max.data, 'disease');
+        response = h.response(resultSymptomDetail)
     } catch (error) {
         console.log(error);
         if (error.isJoi === true) {
