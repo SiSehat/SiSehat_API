@@ -101,15 +101,14 @@ const deleteModel = function(id, collectionName) {
         deleteRef.once('value', function(snapshot) {
             const detectedId = Object.keys(snapshot.val() ?? []).find(idSnap => idSnap == id)
             if (detectedId) {
+                // TODO pastikan id tersedia
                 return deleteRef.child(id).remove((err) => {
-                    if (err) reject({ status: 'fail', message: err })
+                    if (err) return reject({ status: 'fail', message: err })
         
-                    deleteRef.child(id).on('value', (snapshot) => {
-                        resolve({ 
-                            status: 'success', 
-                            id, 
-                            message: 'berhasil dihapus'
-                        })
+                    resolve({ 
+                        status: 'success', 
+                        id, 
+                        message: 'berhasil dihapus'
                     })
                 })
             }
@@ -117,6 +116,21 @@ const deleteModel = function(id, collectionName) {
             return reject({ 
                 status: 'fail', 
                 message: 'id not found' 
+            })
+        })
+    })
+}
+
+const getByIdModel = async function(body, collectionName) {
+    const getRef = db.database().ref(collectionName);
+    const diseases = []
+
+    body.push({});
+    return new Promise((resolve, reject) => {
+        body.forEach((diseaseData, index) => {
+            getRef.child(diseaseData.id ?? 0).once('value', (snapshot) => {
+                diseases.push(snapshot.val());
+                if (body.length - 1 == index ) resolve(diseases)
             })
         })
     })
@@ -142,7 +156,7 @@ const symptomModel = function(body) {
                                 total++;
                             }
                             if (symptom.val().length - 1 == i) {
-                                symptoms.push({total, data: dataKey})
+                                symptoms.push({total, id: dataKey})
                             }
                         })
                     })
@@ -188,5 +202,6 @@ export {
     updateModel,
     deleteModel,
     symptomModel,
-    medicineModel
+    medicineModel,
+    getByIdModel
 }
