@@ -49,6 +49,7 @@ const addModel = function (body, collectionName) {
 
 const getDetailModel = function(id, collectionName) {
     const getRef = db.database().ref(collectionName);
+    
     return new Promise((resolve, reject) => {
         getRef.child(id).once('value', (snapshot) => {
             if (snapshot.val() == null) {
