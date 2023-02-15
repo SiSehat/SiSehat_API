@@ -1,47 +1,19 @@
-import db from "../../db.js";
 import { diseaseSchema } from "../helpers/validation_schema.js";
-
-const firestore = db.firestore();
-let getCollection = null;
+import { addModel, deleteModel, getAllModel, getDetailModel, updateModel } from '../models/diseaseModel.js'
 
 const addDisease = async (request, h) => {
-  let response = null;
+  let response = null
 
   try {
     const result = await diseaseSchema.validateAsync(request.payload)
-
-    getCollection = firestore.collection("disease");
-    console.log(result);
-    const getId = await getCollection.add(result);
-  
-    if (getCollection) {
-      response = h.response({
-        status: "success",
-        message: "Penyakit berhasil ditambahkan",
-        data: {
-          id: getId.id,
-          ...result,
-        },
-      });
-  
-      response.code(201);
-    }
+    const resultPost = await addModel(result, 'disease')
+    response = h.response(resultPost).code(201);
   } catch (error) {
-    if (error.isJoi === true)  {
-      response = h.response({
-        status: "fail",
-        message: error.details,
-      });
-
-      response.code(500);
-    } else {
-      console.log(error);
-      response = h.response({
-        status: "fail",
-        message: "Penyakit gagal ditambahkan",
-      });
-
-      response.code(500);
+    if (error.isJoi)  {
+      response = h.response({ status: "fail", ...error.details, }).code(500);
+    }
+    if (error.status == 'fail') {
+      response = h.response(error).code(500)
     }
   }
 
@@ -49,27 +21,13 @@ const addDisease = async (request, h) => {
 };
 
 const getAllDisease = async (request, h) => {
-  getCollection = firestore.collection("disease");
   let response = null
 
   try {
-    let datasDisease = (await getCollection.get()).docs;
-    datasDisease = datasDisease.map((disease) => {
-      return {
-        ...disease.data(),
-        id: disease.id,
-      };
-    });
-
-    response = h.response({
-      status: 'success',
-      data: datasDisease
-    })
+    const resultGET = await getAllModel('disease')
+    response = h.response(resultGET).code(200)
   } catch (error) {
-    response =  h.response({
-      status: 'success',
-      data: datasDisease
-    })
+    response =  h.response(error).code(404);
   }
 
   return response;
@@ -77,88 +35,44 @@ const getAllDisease = async (request, h) => {
 
 const getDetailDisease = async (request, h) => {
   const { id } = request.params;
+  let response = null;
 
-  getCollection = firestore.collection("disease");
-  const dataObat = (await getCollection.get()).docs.find(
-    (value) => value.id === id
-  );
-
-  if (dataObat) {
-    return {
-      status: "success",
-      id: dataObat.id,
-      data: dataObat.data(),
-    };
-  } else {
-    const response = h.response({
-      status: "fail",
-      message: "Penyakit tidak ditemukan",
-    });
-
-    response.code(404);
-    return response;
+  try {
+    const resultGET = await getDetailModel(id, 'disease');
+    response = h.response(resultGET).code(200);
+  } catch (error) {
+    response = h.response(error).code(404);
   }
+
+  return response;
 };
 
 const updateDisease = async (request, h) => {
   const { id } = request.params;
   const body = request.payload;
+  let response = null
 
-  getCollection = firestore.collection("disease");
-  const dataObat = getCollection.doc(id);
-  const oldData = (await dataObat.get()).data();
-  const publish_date = new Date().toISOString();
-  
-  if (oldData) {
-    dataObat.update({
-      ...body,
-      publish_date,
-    });
-
-    const response = h.response({
-      status: "success",
-      message: "Penyakit berhasil diperbaharui",
-      data: (await dataObat.get()).data(),
-    });
-
-    response.code(200);
-    return response;
+  try {
+    const resultUpdate = await updateModel(id, body, 'disease')
+    response = h.response(resultUpdate).code(200)
+  } catch (error) {
+    response = h.response(error).code(404);
   }
 
-  const response = h.response({
-    status: "fail",
-    message: "Gagal diperbaharui, id tidak ditemukan",
-  });
-
-  response.code(404);
   return response;
 };
 
 const deleteDisease = async (request, h) => {
   const { id } = request.params;
+  let response = null;
 
-  getCollection = firestore.collection("disease");
-  const dataObat = getCollection.doc(id);
-  const idValidFromDB = (await getCollection.get()).docs.find(
-    (value) => value.id === id
-  );
-
-  if (idValidFromDB) {
-    await dataObat.delete();
-
-    const response = h.response({
-      status: "success",
-      message: "obat berhasil dihapus",
-    });
-
-    return response;
+  try {
+    const resultDelete = await deleteModel(id, 'disease');
+    response = h.response(resultDelete).code(200)
+  } catch (error) {
+    response = h.response(error).code(404)
   }
-
-  const response = h.response({
-    status: "fail",
-    message: "obat gagal dihapus, id tidak ditemukan",
-  });
-  response.code(404);
+  
   return response;
 };
 

@@ -1,162 +1,85 @@
-import db from "../../db.js";
 import { medicineSchema } from "../helpers/validation_schema.js";
-
-const firestore = db.firestore();
-let getCollection = null;
+import { addModel, deleteModel, getAllModel, getDetailModel, updateModel } from "../models/diseaseModel.js";
 
 // obat ====
 const addObat = async (request, h) => {
-  const data = request.payload;
-  let response = null
+  let response = null;
 
   try {
     const result = await medicineSchema.validateAsync(request.payload);
+    const resultPost = await addModel(result, "drug");
 
-    getCollection = firestore.collection("drug");
-    const getId = await getCollection.add(result);
-  
-    if (getId) {
-      response = h.response({
-        status: "success",
-        message: "Obat berhasil ditambahkan",
-        data: {
-          id: getId.id,
-          data
-        },
-      });
-  
-      response.code(201);
-      return response;
-    }
+    response = h.response(resultPost).code(201);
   } catch (error) {
     if (error.isJoi === true) {
       response = h.response({
         status: "fail",
         message: error.details,
       });
-  
+
       response.code(500);
-    } else {
-      response = h.response({
-        status: "fail",
-        message: "Obat gagal ditambahkan",
-      });
-  
-      response.code(500);
+      return response;
     }
-    return response; 
+
+    response = h.response(error);
+    response.code(500);
   }
+  return response;
 };
 
 const getAllDrug = async (request, h) => {
-  getCollection = firestore.collection("drug")
-  let response = null
+  let response = null;
   try {
-    let datasDrug = (await getCollection.get()).docs
-    datasDrug = datasDrug.map((drug) => {
-      return {
-        ...drug.data(),
-        id: drug.id,
-      }
-    })
-
-    response = h.response({
-      status: 'success',
-      data: datasDrug
-    })
+    const resultGET = await getAllModel('drug');
+    response = h.response(resultGET).code(200)
   } catch (error) {
-    response = h.response({
-      status: 'fail',
-      error: error.message
-    })
+    response = h.response(error).code(404);
   }
-  
+
   return response;
-}
+};
 
 const getDetailDrug = async (request, h) => {
   const { id } = request.params;
+  let response = null
 
-  getCollection = firestore.collection("drug");
-  const dataObat = (await getCollection.get()).docs.find(
-    (value) => value.id === id
-  );
-
-  if (dataObat) {
-    return {
-      status: "success",
-      id: dataObat.id,
-      data: dataObat.data(),
-    };
-  } else {
-    const response = h.response({
-      status: "fail",
-      message: "Obat tidak ditemukan",
-    });
-
-    response.code(404);
-    return response;
+  try {
+    const resultGET = await getDetailModel(id, 'drug');
+    response = h.response(resultGET).code(200)
+  } catch (error) {
+    response = h.response(error).code(404);
   }
+
+  return response;
 };
 
 const updateDrug = async (request, h) => {
   const { id } = request.params;
   const body = request.payload;
+  let response = null;
 
-  getCollection = firestore.collection("drug")
-  const dataObat = getCollection.doc(id)
-  const oldData = (await dataObat.get()).data()
-  const publish_date = new Date().toISOString();
-
-  if (oldData) {
-    dataObat.update({
-      ...body,
-      publish_date
-    });
-
-    const response = h.response({
-      status: 'success',
-      message: 'Obat berhasil diperbaharui',
-      data: (await dataObat.get()).data()
-    });
-
-    response.code(200)
-    return response;
+  try {
+    const resultUpdate = await updateModel(id, body, 'drug');
+    response = h.response(resultUpdate).code(200)
+  } catch (error) {
+    response = h.response(error).code(404);
   }
 
-  const response = h.response({
-    status: 'fail',
-    message: 'Gagal diperbaharui, id tidak ditemukan'
-  })
-
-  response.code(404)
-  return response
-}
+  return response;
+};
 
 const deleteDrug = async (request, h) => {
   const { id } = request.params;
+  let response = null;
 
-  getCollection = firestore.collection("drug")
-  const dataObat = getCollection.doc(id);
-  const idValidFromDB = (await getCollection.get()).docs.find(value => value.id === id)
-
-  if (idValidFromDB) {
-    await dataObat.delete();
-
-    const response = h.response({
-      status: 'success',
-      message: 'obat berhasil dihapus'
-    });
-    response.code(200)
-    return response;
+  try {
+    const resultDelete = await deleteModel(id, 'drug');
+    response = h.response(resultDelete).code(200)
+  } catch (error) {
+    response = h.response(error).code(404);
   }
 
-  const response = h.response({
-    status: 'fail',
-    message: 'obat gagal dihapus, id tidak ditemukan'
-  });
-  response.code(404);
-  return response;
-}
+  return response
+};
 
 export { addObat, getAllDrug, getDetailDrug, updateDrug, deleteDrug };
