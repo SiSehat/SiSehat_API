@@ -172,11 +172,12 @@ const symptomModel = function(body) {
 
 const medicineModel = function (body) {
     const getRef = db.database().ref('drug')
+    const data = [];
+
     return new Promise((resolve, reject) => {
         body.forEach((drug) => {
-            getRef.orderByChild('title').startAt(`${drug}`).endAt(`${drug}\uf8ff`)
+            // getRef.orderByChild('title').startAt(`${drug}`).endAt(`${drug}\uf8ff`)
             getRef.once('value', (snapshot) => {
-                const data = [];
                 snapshot.forEach(function(childSnapshot) {
                     const dataDrug = childSnapshot.val();
                     if (dataDrug.title.indexOf(drug) !== -1) {
