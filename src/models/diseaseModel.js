@@ -181,7 +181,7 @@ const medicineModel = function (body) {
                 snapshot.forEach(function(childSnapshot) {
                     const dataDrug = childSnapshot.val();
                     if (dataDrug.title.indexOf(drug) !== -1) {
-                      data.push(dataDrug)
+                      data.push({id: childSnapshot.key, data: dataDrug})
                     }
                 });
                 
