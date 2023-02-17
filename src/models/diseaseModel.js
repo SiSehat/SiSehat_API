@@ -15,7 +15,7 @@ const getAllModel = function (collectionName) {
             snapshot.forEach((data) => {
                 datas.push({
                     id: data.key,
-                    data: data.val()
+                    ...data.val()
                 })
             })
             resolve({
